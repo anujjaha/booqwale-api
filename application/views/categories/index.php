@@ -21,6 +21,7 @@ jquery.fancybox.css?v=2.1.5" media="screen" />
 						<th>Id</th>
 						<th>Parent </th>
 						<th>Title</th>
+						<th>Link</th>
 						<th>Image</th>
 						<th>Delete</th>
 					</tr>
@@ -33,6 +34,7 @@ jquery.fancybox.css?v=2.1.5" media="screen" />
 					<td> <?php echo $category['id'];?> </td>
 					<td> - </td>
 					<td> <?php echo $category['title'];?> </td>
+					<td> <?php echo $category['category_link'];?> </td>
 					<td> 
 						<?php
 							if(isset($category['image']) && !empty($category['image']))

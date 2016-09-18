@@ -36,6 +36,18 @@ echo form_open('categories/create', $attributes);
 			</div>
 
 			<div class="box-body">
+			Category Link 
+			<?php
+			$link = array( 
+				'name'		=> 'category_link',
+				'id'		=> 'category_link',
+				'class'		=> 'form-control'
+			);	
+				echo form_input($link);
+			?>
+			</div>
+
+			<div class="box-body">
 				Upload Image
 				<?php
 				$profile_picture = array( 'name'=>'category_image',

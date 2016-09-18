@@ -81,6 +81,7 @@ function getChildCategory($parentId = null, $title = null)
                         <td>
                             '.$category['title'].'
                         </td>
+                        <td> '. $category['category_link'] .'</td>
                         <td> 
                            '.$showImage.'
                         </td>

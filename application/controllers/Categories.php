@@ -63,10 +63,11 @@ class Categories extends CI_Controller {
 			}
 			
 			$insertData = array(
-				'title'		=> $input['name'],
-				'parent_id'	=> $input['parent_id'],
-				'image'		=> $input['image'],
-				'basepath'		=> $this->basePath
+				'title'				=> $input['name'],
+				'parent_id'			=> $input['parent_id'],
+				'image'				=> $input['image'],
+				'category_link'		=> $input['category_link'],
+				'basepath'			=> $this->basePath
 			);
 
 			$this->category_model->create($insertData);
