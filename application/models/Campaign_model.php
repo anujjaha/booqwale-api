@@ -1,0 +1,104 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+* Name:  Ion Auth Model
+*
+* Version: 2.5.2
+*
+* Author:  Ben Edmunds
+* 		   ben.edmunds@gmail.com
+*	  	   @benedmunds
+*
+* Added Awesomeness: Phil Sturgeon
+*
+* Location: http://github.com/benedmunds/CodeIgniter-Ion-Auth
+*
+* Created:  10.01.2009
+*
+* Last Change: 3.22.13
+*
+* Changelog:
+* * 3-22-13 - Additional entropy added - 52aa456eef8b60ad6754b31fbdcc77bb
+*
+* Description:  Modified auth system based on redux_auth with extensive customization.  This is basically what Redux Auth 2 should be.
+* Original Author name has been kept but that does not mean that the method has not been modified.
+*
+* Requirements: PHP5 or above
+*
+*/
+
+class Campaign_model extends CI_Model
+{
+	public $table =  "campaign";
+	
+	
+	public function getAllCampaigns() {
+		$this->db->select('*,id as campaign_id')
+				->from($this->table)
+				->order_by('id','desc');
+		
+		$query = $this->db->get();
+		return $query->result_array();
+	}
+
+	public function getCampaignByParam($param, $value)
+	{
+		$this->db->select('*,id as campaign_id')
+				->from($this->table)
+				->where($param, $value)
+				->order_by('id', 'desc');
+		
+		$query = $this->db->get();
+		return $query->row();
+	}
+
+	public function create($data=array()) {
+		
+		$data['created_on'] = date('Y-m-d H:i:s');
+
+		$this->db->insert($this->table,$data);
+		return $this->db->insert_id();
+	}
+
+	
+	public function update($id,$data=array())
+	{
+		$this->db->where('id',$id);
+		$this->db->update($this->table,$data);
+	}
+
+	public function getReceipt($id)
+	{
+		$this->db->select('*')
+				->from($this->table)
+				->where('id',$id);
+		
+		$query  = $this->db->get();
+
+		$result = $query->row();
+
+		$contact_ids = explode(",", $result->receipt_ids);
+
+		array_pop($contact_ids);
+
+		$this->db->select('name,mobile,email_id_one')
+				->from('contacts')
+				->where_in('id',$contact_ids);
+		
+		$query = $this->db->get();
+
+		return $query->result_array();
+
+	}
+
+	public function getContentById($id)
+	{
+		$this->db->select('content')
+				->from($this->table)
+				->where('id',$id);
+		$query = $this->db->get();
+
+		return $query->row()->content;
+	}
+}
+
+
