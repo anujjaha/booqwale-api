@@ -47,9 +47,9 @@ class Ajax extends CI_Controller {
 		return false;
 	}
 
-	public function ajax_delete_category($id=null) {
-		if( $id ) {
-			
+	public function ajax_delete_category($id = null) {
+		if( $id ) 
+		{
 			// Load Contact Model to get Single Contact
 			$this->load->model('category_model');
 			
@@ -89,7 +89,23 @@ class Ajax extends CI_Controller {
 				echo $content;
 				die;
 			}
-
 		}	
+	}
+
+	public function ajax_delete_banner($id = null)
+	{
+		if( $id ) 
+		{
+			// Load Contact Model to get Single Contact
+			$this->load->model('banner_model');
+			$status = $this->banner_model->deleteBannerById($id);
+
+			if($status) {
+				echo true;
+				die;
+			}
+		}
+		echo false;
+		die;
 	}
 }

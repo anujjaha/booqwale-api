@@ -23,6 +23,11 @@
           <i class="fa fa-circle-o text-red"></i> <span>Category Manager</span>
         </a>
       </li>
+      <li>
+         <a href="<?php echo site_url();?>banners">
+           <i class="fa fa-circle-o text-red"></i> <span>Banners Manager</span>
+         </a>
+      </li>
 
     </ul>
   </section>

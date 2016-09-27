@@ -50,6 +50,16 @@ class Api extends CI_Controller {
 		$this->setResponse(false);		
 	}
 
+	public function getAllBanners()
+	{
+		$this->load->model('banner_model');
+		$banners = $this->banner_model->getAllBanners();	
+		if($banners)
+		{
+			$this->setResponse(true, $this->apiSuccessMessage, $banners);
+		}
+
+	}
 	public function setResponse($status = false, $message = "No data Found", $data = array())
 	{
 		$response = array(
