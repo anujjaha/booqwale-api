@@ -59,6 +59,7 @@ class Api extends CI_Controller {
 			$this->setResponse(true, $this->apiSuccessMessage, $banners);
 		}
 
+		$this->setResponse(false);
 	}
 	public function setResponse($status = false, $message = "No data Found", $data = array())
 	{
