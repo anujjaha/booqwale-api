@@ -98,3 +98,33 @@ function getChildCategory($parentId = null, $title = null)
 
     return false;
 }
+
+function getAssociates($asscoateId = null)
+{
+    $ci = & get_instance();
+
+    $ci->db->select('*')
+            ->from('associates')
+            ->where('status', 1)
+            ->order_by('associate_title');
+
+    $query = $ci->db->get();
+
+    $html = '<select class="form-control"  name="associate_id"><option value="0">Please Select Associate</option>';
+
+    foreach($query->result_array() as $associate)
+    {
+        $selected = "";
+
+        if($asscoateId && $asscoateId == $associate['id'])
+        {
+            $selected = 'selected="selected"';            
+        }
+        $html .= '<option '.$selected.' value="'.$associate['id'].'"> '.$associate['associate_title'].' </option>';
+    }
+
+    $html .= '</select>';
+    
+    return $html;
+
+}

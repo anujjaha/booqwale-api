@@ -28,7 +28,11 @@
            <i class="fa fa-circle-o text-red"></i> <span>Banners Manager</span>
          </a>
       </li>
-
+      <li>
+         <a href="<?php echo site_url();?>dailydeals">
+           <i class="fa fa-circle-o text-red"></i> <span>Daily Deals Manager</span>
+         </a>
+      </li>
     </ul>
   </section>
 </aside>

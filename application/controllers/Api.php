@@ -61,6 +61,35 @@ class Api extends CI_Controller {
 
 		$this->setResponse(false);
 	}
+
+	public function getAllDailyDeals()
+	{
+		$this->load->model('daily_deal_model');
+		$deals = $this->daily_deal_model->getAllDailyDeals();	
+
+		if($deals)
+		{
+			$this->setResponse(true, $this->apiSuccessMessage, $deals);
+		}
+
+		$this->setResponse(false);
+	}
+
+	public function getAllDailyDealsById($id = null)
+	{
+		if($id)
+		{
+			$this->load->model('daily_deal_model');
+			$deal = (array) $this->daily_deal_model->getDailyDealsById($id);	
+
+			if($deal)
+			{
+				$this->setResponse(true, $this->apiSuccessMessage, $deal);
+			}
+		}
+			
+		$this->setResponse(false);
+	}
 	public function setResponse($status = false, $message = "No data Found", $data = array())
 	{
 		$response = array(
