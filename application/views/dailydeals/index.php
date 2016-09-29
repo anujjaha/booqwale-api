@@ -11,7 +11,7 @@ jquery.fancybox.css?v=2.1.5" media="screen" />
         <div class="box-header">
         <h3 class="box-title">
 			  Group List
-		<a href="<?php echo site_url();?>dailydeals/create">Add More</a>	
+		<a href="<?php echo site_url();?>DailyDeals/create">Add More</a>	
 		</h3>
         </div><!-- /.box-header -->
         <div class="box-body table-responsive">

@@ -3,7 +3,7 @@
 <div class="container">
 <?php
 $attributes = array('class' => 'form', 'id' => 'create_dailydeals', 'enctype'=>'multipart/form-data');
-echo form_open('dailydeals/create', $attributes);
+echo form_open('DailyDeals/create', $attributes);
 ?>	
 
 <style>
