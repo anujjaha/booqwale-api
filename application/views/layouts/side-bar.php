@@ -29,7 +29,7 @@
          </a>
       </li>
       <li>
-         <a href="<?php echo site_url();?>dailydeals">
+         <a href="<?php echo site_url();?>DailyDeals">
            <i class="fa fa-circle-o text-red"></i> <span>Daily Deals Manager</span>
          </a>
       </li>
