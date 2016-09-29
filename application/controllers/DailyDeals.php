@@ -77,33 +77,9 @@ class DailyDeals extends CI_Controller {
 				'basepath'			=> $this->basePath
 			);
 			$this->daily_deal_model->create($insertData);
-			redirect('dailydeals/index',"refresh");
+			redirect('DailyDeals/index',"refresh");
 		}
 
-		$this->template->load('dailydeals/add');	
-	}
-
-	public function edit($id=null)
-	{
-		if($id) {
-
-			$categories = $this->category_model->getCategoriesByParam('id',$id);
-			
-			if($this->input->post()) 
-			{
-
-				$input = $this->input->post();
-				$id    = $input['id'];
-
-				$data = array( 'categories' => $input['name'] );
-
-				$this->category_model->update($id,$data);
-				redirect('category/index',"refresh");
-
-			}
-
-			$data['category'] = $categories[0];
-			$this->template->load('category/edit',$data);	
-		}
+		$this->template->load('DailyDeals/add');	
 	}
 }
