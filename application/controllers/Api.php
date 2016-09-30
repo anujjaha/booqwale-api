@@ -129,4 +129,19 @@ class Api extends CI_Controller {
 		}
 		$this->setResponse(false);		
 	}
+
+	public function getFilterOffers($filter = null)
+	{
+		if($filter)
+		{
+			$this->load->model('offer_model');
+			$offers = $this->offer_model->getFilterOffers($filter);	
+
+			if($offers)
+			{
+				$this->setResponse(true, $this->apiSuccessMessage, $offers);
+			}
+		}
+		$this->setResponse(false);		
+	}
 }

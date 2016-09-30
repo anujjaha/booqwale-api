@@ -42,6 +42,22 @@ class Offer_model extends CI_Model
 		return $query->result_array();
 	}
 	
+	public function getFilterOffers($filter)
+	{
+		$this->db->select('*, offers.id as id')
+				->from($this->table)
+				->join($this->tableAssociate, 'associates.id = offers.associate_id', 'left')
+				->like('offers.associate_title', $filter)
+				->or_like('title', $filter)
+				->or_like('small_title', $filter)
+				->or_like('description', $filter)
+				->or_like('deal_code', $filter)
+				->order_by('offers.id', 'DESC');
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+
 	public function getOffersById($id = null)
 	{
 		if($id)
