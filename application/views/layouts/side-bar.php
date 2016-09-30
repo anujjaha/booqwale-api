@@ -33,6 +33,11 @@
            <i class="fa fa-circle-o text-red"></i> <span>Daily Deals Manager</span>
          </a>
       </li>
+      <li>
+         <a href="<?php echo site_url();?>offers">
+           <i class="fa fa-circle-o text-red"></i> <span>Offers Manager</span>
+         </a>
+      </li>
     </ul>
   </section>
 </aside>
