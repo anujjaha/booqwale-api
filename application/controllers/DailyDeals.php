@@ -80,6 +80,6 @@ class DailyDeals extends CI_Controller {
 			redirect('DailyDeals/index',"refresh");
 		}
 
-		$this->template->load('DailyDeals/add');	
+		$this->template->load('dailydeals/add');	
 	}
 }
