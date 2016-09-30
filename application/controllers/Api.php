@@ -101,4 +101,17 @@ class Api extends CI_Controller {
 		echo json_encode($response);
 		die;
 	}
+
+	public function getAllOffers()
+	{
+		$this->load->model('offer_model');
+		$offers = $this->offer_model->getAllOffers();	
+
+		if($offers)
+		{
+			$this->setResponse(true, $this->apiSuccessMessage, $offers);
+		}
+
+		$this->setResponse(false);		
+	}
 }

@@ -102,7 +102,6 @@ function getChildCategory($parentId = null, $title = null)
 function getAssociates($asscoateId = null)
 {
     $ci = & get_instance();
-
     $ci->db->select('*')
             ->from('associates')
             ->where('status', 1)
@@ -111,7 +110,6 @@ function getAssociates($asscoateId = null)
     $query = $ci->db->get();
 
     $html = '<select class="form-control"  name="associate_id"><option value="0">Please Select Associate</option>';
-
     foreach($query->result_array() as $associate)
     {
         $selected = "";
@@ -126,5 +124,15 @@ function getAssociates($asscoateId = null)
     $html .= '</select>';
     
     return $html;
+}
 
+function getAssociateTitle($associateId = null)
+{
+    $ci = & get_instance();
+    $ci->db->select('associate_title')
+            ->from('associates')
+            ->where('id', $associateId);
+    $query = $ci->db->get();
+
+    return $query->row()->associate_title;
 }

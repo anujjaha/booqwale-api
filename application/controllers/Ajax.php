@@ -124,4 +124,20 @@ class Ajax extends CI_Controller {
 		echo false;
 		die;
 	}
+
+	public function ajax_delete_offer($id = null)
+	{
+		if( $id ) 
+		{
+			$this->load->model('offer_model');
+			$status = $this->daily_deal_model->deleteOfferById($id);
+
+			if($status) {
+				echo true;
+				die;
+			}
+		}
+		echo false;
+		die;
+	}
 }
