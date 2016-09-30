@@ -114,4 +114,19 @@ class Api extends CI_Controller {
 
 		$this->setResponse(false);		
 	}
+
+	public function getAllOffersById($id = null)
+	{
+		if($id)
+		{
+			$this->load->model('offer_model');
+			$offers = $this->offer_model->getOffersById($id);	
+
+			if($offers)
+			{
+				$this->setResponse(true, $this->apiSuccessMessage, $offers);
+			}
+		}
+		$this->setResponse(false);		
+	}
 }

@@ -72,24 +72,7 @@ class Offer_model extends CI_Model
 		$this->db->insert($this->table, $data);
 		return $this->db->insert_id();
 	}
-
-	public function getBannersByParam($param=null, $value=null) {
-		if($param && $value)
-		{
-			$this->db->select('*')
-				->from($this->table)
-				->where($this->table.".".$param,$value);
-			$query = $this->db->get();
-
-			if($query->result_array())
-			{
-				return $query->result_array();	
-			}
-
-		}
-		return false;
-	}
-
+	
 	public function update($id,$data=array())
 	{
 		$this->db->where('id',$id);
