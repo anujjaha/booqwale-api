@@ -11,7 +11,7 @@ jquery.fancybox.css?v=2.1.5" media="screen" />
         <div class="box-header">
         <h3 class="box-title">
 			  Group List
-		<a href="<?php echo site_url();?>DailyDeals/create">Add More</a>	
+		<a href="<?php echo site_url();?>associates/create">Add More Associate</a>	
 		</h3>
         </div><!-- /.box-header -->
         <div class="box-body table-responsive">
@@ -19,68 +19,28 @@ jquery.fancybox.css?v=2.1.5" media="screen" />
 				<thead>
 					<tr>
 						<th>Id</th>
-						<th>Associated</th>
 						<th>Title </th>
-						<th>Small Tilte</th>
-						<th>Description</th>
-						<th>Deal Code</th>
-						<th>Deal Expired</th>
-						<th>Link</th>
-						<th>Booqwale Affiliate</th>
 						<th>Image</th>
-						<th>Status</th>
 						<th>Action</th>
 					</tr>
 			</thead>
 			<?php
 				$sr=1;
-				foreach($dailydeals as $deal) {
+				foreach($associates as $associate) {
 				?>
-				<tr id="record_<?php echo $deal['id'];?>">
-					<td> <?php echo $deal['id'];?> </td>
-					<td> <?php echo $deal['associate_title'];?> </td>
-					<td> <?php echo $deal['title'];?> </td>
-					<td> <?php echo $deal['small_title'];?> </td>
-					<td> <?php echo $deal['description'];?> </td>
-					<td> <?php echo $deal['deal_code'];?> </td>
-					<td> <?php echo $deal['deal_end'];?> </td>
-					<td> <?php echo $deal['custom_link'];?> </td>
-					<td> <?php
-							if($deal['is_booqwale'])
-							{
-								echo "Yes";
-							}
-							else
-							{
-								echo "No";
-							}
-						?> 
-					</td>
+				<tr id="record_<?php echo $associate['id'];?>">
+					<td> <?php echo $associate['id'];?> </td>
+					<td> <?php echo $associate['associate_title'];?> </td>
 					<td> 
 						<?php
-							if(isset($deal['image']) && !empty($deal['image']))
+							if(isset($associate['associate_image']) && !empty($associate['associate_image']))
 							{
 						?>
-						<img width="50" height="50" class="circle" src="<?php echo site_url();?>/assets/daily-deals-images/<?php echo $deal['image'];?>"> 
+						<img width="50" height="50" class="circle" src="<?php echo $associate['associate_image'];?>"> 
 						<?php } ?>
 					</td>
 					<td>
-						<?php
-							if($deal['status']) 
-							{
-								echo "<span class='green'>Active</span>";
-							}
-							else
-							{
-								echo "<span class='red'>Inactive</span>";	
-							}
-						?>
-					</td>
-					<td>
-						<a href="<?php echo site_url();?>DailyDeals/edit/<?php echo $deal['id'];?>" class="btn btn-primary">
-							Edit
-						</a>
-						<span class="btn btn-success delete-data" data-id="<?php echo $deal['id'];?>">
+						<span class="btn btn-success delete-data" data-id="<?php echo $associate['id'];?>">
 							Delete
 						</span>
 					</td>
@@ -128,7 +88,7 @@ $(document).ready(function() {
 });
 
 function deleteCategory(id) {
-	var status = confirm("Do you want to Delete Daily Deal ?");
+	var status = confirm("Do you want to Delete Associate ?");
 
 	if(status == false) { 
 		return false; 
@@ -136,13 +96,13 @@ function deleteCategory(id) {
 
 	jQuery.ajax({
          type: "POST",
-         url: "<?php echo site_url();?>/ajax/ajax_delete_dailydeal/"+id, 
+         url: "<?php echo site_url();?>/ajax/ajax_delete_associate/"+id, 
          success: 
             function(data) {
             		if(data == true) {
             			jQuery("#record_"+id).remove();
             		} else {
-            			alert("Unable to Delete Daily Deal");
+            			alert("Unable to Delete Associate");
             		}
             		return true;
             }

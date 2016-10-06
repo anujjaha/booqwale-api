@@ -18,6 +18,11 @@
     <?php require_once('search-form.php')?>
     
     <ul class="sidebar-menu">
+    <li>
+         <a href="<?php echo site_url();?>associates">
+           <i class="fa fa-circle-o text-red"></i> <span>Associates Manager</span>
+         </a>
+      </li>
      <li>
         <a href="<?php echo site_url();?>categories">
           <i class="fa fa-circle-o text-red"></i> <span>Category Manager</span>

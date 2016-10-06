@@ -90,7 +90,7 @@ class Daily_deal_model extends CI_Model
 		return false;
 	}
 
-	public function update($id,$data=array())
+	public function update($id, $data=array())
 	{
 		$this->db->where('id',$id);
 		$this->db->update($this->table, $data);

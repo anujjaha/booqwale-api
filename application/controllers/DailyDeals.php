@@ -82,4 +82,55 @@ class DailyDeals extends CI_Controller {
 
 		$this->template->load('dailydeals/add');	
 	}
+
+	public function edit($id = null)
+	{
+		if($id)
+		{
+			$data['dealInfo'] = $this->daily_deal_model->getDailyDealsById($id);
+
+			if($this->input->post())
+			{
+				$input 			= $this->input->post();
+				$dailyDealId 	= $input['id'];
+
+				$updateData = array(
+					'associate_id'		=> $input['associate_id'],
+					'title'				=> $input['title'],
+					'small_title'		=> $input['small_title'],
+					'description'		=> $input['description'],
+					'deal_code'			=> $input['deal_code'],
+					'deal_end'			=> $input['deal_end'],
+					'custom_link'		=> $input['custom_link'],
+					'caption'			=> $input['caption'],
+					'is_booqwale'		=> $input['is_booqwale'],
+				);
+
+				if(isset($_FILES['dailydeal_image']))
+				{
+					$fileName =  rand(111111,999999)."_dailydeal_picture.jpg";
+					$config = array( 
+						'upload_path'   => 'assets/daily-deals-images',
+						'allowed_types' => 'gif|jpg|png',
+						'file_name'     => $fileName
+					);
+						
+					$this->load->library('upload', $config);
+
+	                if ( $this->upload->do_upload('dailydeal_image'))
+	                {
+	                	$picData = $this->upload->data();  
+
+	                	$updateData['image'] = $picData['file_name'];
+	                }
+				}
+
+				$this->daily_deal_model->update($dailyDealId, $updateData);
+				
+				redirect('DailyDeals/index',"refresh");
+			}
+
+		$this->template->load('dailydeals/edit', $data);	
+		}
+	}
 }

@@ -77,6 +77,9 @@ jquery.fancybox.css?v=2.1.5" media="screen" />
 						?>
 					</td>
 					<td>
+						<a href="<?php echo site_url();?>offers/edit/<?php echo $offer['id'];?>" class="btn btn-primary">
+							Edit
+						</a>
 						<span class="btn btn-success delete-data" data-id="<?php echo $offer['id'];?>">
 							Delete
 						</span>
