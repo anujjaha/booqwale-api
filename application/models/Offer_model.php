@@ -75,6 +75,18 @@ class Offer_model extends CI_Model
 		return array();
 	}
 	
+	public function getOffersByParam($param, $value)
+	{
+		$this->db->select('*, offers.id as id')
+				->from($this->table)
+				->join($this->tableAssociate, 'associates.id = offers.associate_id', 'left')
+				->where('offers.'.$param, $value)
+				->order_by('offers.id', 'DESC');
+		$query = $this->db->get();
+
+		return $query->result_array();
+	
+	}
 
 	public function create($data=array())
 	{

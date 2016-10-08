@@ -90,6 +90,23 @@ class Api extends CI_Controller {
 			
 		$this->setResponse(false);
 	}
+
+	public function getAllSimilarDailyDealsByAssociateId($id = null)
+	{
+		if($id)
+		{
+			$this->load->model('daily_deal_model');
+			$deal = (array) $this->daily_deal_model->getAllDailyDealsByAssociateId('associate_id', $id);	
+
+			if($deal)
+			{
+				$this->setResponse(true, $this->apiSuccessMessage, $deal);
+			}
+		}
+			
+		$this->setResponse(false);
+	}
+
 	public function setResponse($status = false, $message = "No data Found", $data = array())
 	{
 		$response = array(
@@ -121,6 +138,21 @@ class Api extends CI_Controller {
 		{
 			$this->load->model('offer_model');
 			$offers = $this->offer_model->getOffersById($id);	
+
+			if($offers)
+			{
+				$this->setResponse(true, $this->apiSuccessMessage, $offers);
+			}
+		}
+		$this->setResponse(false);		
+	}
+
+	public function getAllSimilarOffersByAssociateId($id = null)
+	{
+		if($id)
+		{
+			$this->load->model('offer_model');
+			$offers = $this->offer_model->getOffersByParam("associate_id", $id);	
 
 			if($offers)
 			{

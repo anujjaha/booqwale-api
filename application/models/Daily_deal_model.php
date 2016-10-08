@@ -42,6 +42,18 @@ class Daily_deal_model extends CI_Model
 		return $query->result_array();
 	}
 	
+	public function getAllDailyDealsByAssociateId($param, $value)
+	{
+		$this->db->select('*, deals_of_day.id as id')
+				->from($this->table)
+				->join($this->tableAssociate, 'associates.id = deals_of_day.associate_id', 'left')
+				->where($this->table.$param, $value)
+				->order_by('deals_of_day.id', 'DESC');
+		$query = $this->db->get();
+
+		return $query->result_array();
+	}
+	
 	public function getDailyDealsById($id = null)
 	{
 		if($id)
